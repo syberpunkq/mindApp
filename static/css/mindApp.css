@@ -1,0 +1,90 @@
+body{
+	background-color:#fff;
+	padding-top:20px;
+	padding-bottom:20px;
+	padding-top: 50px; 
+}
+#wrapper{
+	width:100%
+}
+.navbar-default {
+    background-color: #AA2527;
+    border-bottom: 3px solid #7F1C1D !important;
+}
+.pagination > li > a, .pagination > li > span {
+    background-color: #175E9B;
+    border-bottom: 3px solid #033E6D !important;
+
+}
+a {
+	color: #00437C;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: #CCABAB;
+}
+
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+	color: #CCABAB;
+}
+
+.panel-default > .panel-heading {
+    color: #2c3e50;
+    background-color: #F7F1E4;
+    border-color: #F7F1E4;
+}
+
+.pagination > li > a:hover, .pagination > li > span:hover, .pagination > li > a:focus, .pagination > li > span:focus {
+    background-color: #033E6D;
+}
+
+a:hover, a:active, a:visited {
+	color: #175E9B;
+}
+.well {
+	background-color: #F7F1E4;
+}
+
+.btn-success {
+    color: #ffffff;
+    background-color: #3184cc;
+    border-color: #3184cc;
+}
+
+.btn-success:hover {
+    background-color: #175E9B;
+    border-color: #175E9B;
+}
+
+.btn-primary {
+	background-color: #033E6D;
+	border-color: #033E6D;
+}
+
+.btn-primary:hover {
+	background-color: #022A4B;
+	border-color: #022A4B;
+}
+
+.btn-default {
+    color: #ffffff;
+	background-color: #3184cc;
+    border-color: #3184cc;
+}
+
+.btn-default:hover {
+    color: #ffffff;
+	background-color: #175E9B;
+    border-color: #175E9B;
+}
+ 
+/** Styling input[type=file] **/
+.btn-file { position: relative; overflow: hidden; margin-right: 4px; }
+.btn-file input { position: absolute; top: 0; right: 0; margin: 0; opacity: 0; filter: alpha(opacity=0);
+    transform: translate(-300px, 0) scale(4); font-size: 23px; direction: ltr; cursor: pointer; }
+/* Fix for IE 7: */
+* + html .btn-file { padding: 2px 15px; margin: 1px 0 0 0; }
+
+/** main dark #175E9B **/
+/** main xtra dark #033E6D **/
+/** main ultra dark #022A4B **/
+/** main light #3184cc **/
