@@ -1,31 +1,10 @@
-
- 
-    <script type="text/javascript">
-    (function ($){
-        $(function (){
-            $('.btn-file').each(function (){
-                var self = this;
-                $('input[type=file]', this).change(function (){
-                    // remove existing file info
-                    $(self).next().remove();
-                    // get value
-                    var value = $(this).val();
-                    // get file name
-                    var fileName = value.substring(value.lastIndexOf('/')+13);
-                    // append file info
-                    $('<span class="glyphicon glyphicon-file">' + fileName + '</span>').insertAfter(self);
-                });
-            });
-        });
-    })(jQuery);
-  </script>
   <div class="container">
 	<div class="row">
     <div class="col-md-2"></div>
           <div class="col-md-8">
             <div class="well bs-component">
-              <!-- <form class="form-horizontal" enctype="multipart/form-data" ng-submit="addCompany(title, file)"> -->
-              <form class="form-horizontal" enctype="multipart/form-data">
+              <form class="form-horizontal">
+              <!-- <form class="form-horizontal" enctype="multipart/form-data"> -->
                 <fieldset>
                   <legend>Add a company</legend>
                   <div class="form-group">
@@ -39,18 +18,22 @@
                     <label class="col-lg-2 control-label">Add a contract:</label>
                  		<div class="col-lg-10">
                         	<span class="btn btn-success btn-file">
-                            <span class="glyphicon glyphicon-plus"></span> <span>Choose file...</span>
-                            <input data-my-Directive type="file" name="file" id="file"/>
+                            <span class="glyphicon glyphicon-plus"></span> <span>Choose files...</span>
+                            <input type="file" name="files" id="files" multiple file-input="files" />
                         </span>
                     </div> 
                 </div>
-
+                <div class="filelist">
+                  <li ng-repeat="file in files">{{file.name}}</li>
+                </div>
                   <div class="form-group">
                     <div class="col-lg-4 col-lg-offset-8">
                       <button type="reset" class="btn btn-default">Cancel</button>
-                      <button type="submit" class="btn btn-primary">Submit</button>
+                      <button type="submit" class="btn btn-primary" ng-click="submit(title, files)">Submit</button>
+                      
                     </div>
                   </div>
+
                 </fieldset>
               </form>
 

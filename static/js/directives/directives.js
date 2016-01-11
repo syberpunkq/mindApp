@@ -1,41 +1,14 @@
 angular
 	.module('mindApp')
-	.directive('myDirective', function (httpPostFactory) {
-	    return {
-	        restrict: 'A',
-	        scope: true,
-	        link: function (scope, element, attr) {
-
-	            element.bind('change', function () {
-	                var formData = new FormData();
-	                formData.append('file', element[0].files[0]);
-	                httpPostFactory('/add_account', formData, function (callback) {
-	                    console.log(callback);
-	                });
-	            });
-
-	        }
-	    };
-	});
-
-	// .directive('myDirective', myDirective)
-	
-	// function myDirective(httpPostFactiory) {
-	//     return {
-	//         restrict: 'A',
-	//         scope: true,
-	//         link: function (scope, element, attr) {
-
-	//             element.bind('change', function () {
-	//                 var formData = new FormData();
-	//                 formData.append('Title', 'Test Company');
-	//                 formData.append('file', element[0].files[0]);
-	//                 httpPostFactory('upload_image.php', formData, function (callback) {
-	//                     console.log(callback);
-	//                 });
-	//             });
-
-	//         }
- //    	};
-	// }
-
+	.directive('fileInput', ['$parse', function($parse){
+		return {
+			restrict: 'A',
+			link: function(scope, elm, attrs){
+				elm.bind('change', function() {
+					$parse(attrs.fileInput)
+					.assign(scope, elm[0].files)
+					scope.$apply();
+				})
+			}
+		}
+	}]);

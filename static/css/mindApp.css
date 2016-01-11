@@ -76,6 +76,10 @@ a:hover, a:active, a:visited {
 	background-color: #175E9B;
     border-color: #175E9B;
 }
+
+.filelist {
+    margin-top: 110px;
+    margin-left: 30px}
  
 /** Styling input[type=file] **/
 .btn-file { position: relative; overflow: hidden; margin-right: 4px; }

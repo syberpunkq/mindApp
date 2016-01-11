@@ -19,8 +19,10 @@ function listController($scope, $rootScope, $http, $location) {
 			return "--"
 		}
 		else {
-			var datetime = new Date(datetime);
-			return (datetime.getDate() + "." + datetime.getMonth()+1 + "." + datetime.getFullYear());
+			// var date = new Date(parseInt(datetime));
+			var date = new Date(datetime*1000);
+			return (date.getDate() + "." + (date.getMonth()+1) + "." + date.getFullYear());
+			// return date;
 		}
 
 	}
