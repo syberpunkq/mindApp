@@ -9,9 +9,13 @@ angular
 			templateUrl : 'static/views/login.html',
 			controller : 'loginController'
 		})
-		.when('/add', {
-			templateUrl : 'static/views/add.html',
-			controller : 'addController'
+		.when('/add_account', {
+			templateUrl : 'static/views/add_account.html',
+			controller : 'addAccountController'
+		})
+		.when('/add_user', {
+			templateUrl : 'static/views/add_user.html',
+			controller : 'addUserController'
 		})
 		.when('/list', {
 			templateUrl : 'static/views/list.html',
@@ -19,7 +23,7 @@ angular
 		})
 		.when('/generate', {
 			templateUrl : 'static/views/generate.html',
-			controller : 'mindController'
+			controller : 'generateController'
 		})
 		.otherwise({redirectTo: '/'});
 	});

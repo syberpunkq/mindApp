@@ -1,8 +1,14 @@
 angular
 	.module('mindApp')
-	.controller('addController', addController);
+	.controller('addAccountController', addAccountController);
 
-function addController($scope, $location, $http) {
+function addAccountController($scope, $location, $http) {
+	$http.get('/load_index_data')
+			.then(function(response) {
+				if (response.data.code != 200) {
+					$location.path('/login');
+				}	 
+			});
 	$scope.filesChanged = function(elm) {
 		$scope.files=elm.files;
 
@@ -12,9 +18,9 @@ function addController($scope, $location, $http) {
 	$scope.submit = function(title) {
 
 		var fd = new FormData();
-		fd.append('title', title);
+		// fd.append('title', title);
 		angular.forEach($scope.files, function(file){
-			fd.append('file[]', file);
+			fd.append('files[]', file);
 		})
 		$http({
 			transformRequest:angular.identity,
@@ -24,6 +30,9 @@ function addController($scope, $location, $http) {
 			data: fd
 		}).success(function(d) {
 			console.log(d);
+			var fd = new FormData();
+			fd.append('title', title);
+			fd.append('files[]', d.files);
 					$http({
 			transformRequest:angular.identity,
 			method: 'POST',
@@ -34,7 +43,7 @@ function addController($scope, $location, $http) {
 			console.log(d);
 			$location.path('/list');
 		});
-		});0
+		});
 
 	}
 };

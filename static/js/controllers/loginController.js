@@ -9,14 +9,15 @@ function loginController($scope, $rootScope, $http, $location) {
 		$http.post('/login', data)
 				.then(function(response) {
 					if (response.data.code == 200) {
-					$http.get('/load_index_data')
-						.then(function(response) {
-								$rootScope.returndata = response;
-								$scope.returndata = response;
-								console.log($scope.returndata.data.login);
-								$location.path('/list');
+						$http.get('/load_index_data')
+							.then(function(response) {
+									$rootScope.returndata = response;
+									$scope.returndata = response;
+									console.log('User successfully logged:');
+									console.log($scope.returndata.data.login);
+									$location.path('/list');
 
-						});
+							});
 					}
 					else {
 						$scope.wrongLogin="Wrong login or password";

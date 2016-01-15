@@ -9,6 +9,7 @@ function listController($scope, $rootScope, $http, $location) {
 					$rootScope.returndata = response;
 					$scope.returndata = $rootScope.returndata;
 					console.log($rootScope.returndata.data.login);
+					console.log($rootScope.returndata.data);
 				}
 				else {
 					$location.path('/login');
@@ -19,12 +20,10 @@ function listController($scope, $rootScope, $http, $location) {
 			return "--"
 		}
 		else {
-			// var date = new Date(parseInt(datetime));
 			var date = new Date(datetime*1000);
 			return (date.getDate() + "." + (date.getMonth()+1) + "." + date.getFullYear());
 			// return date;
 		}
 
 	}
-	
 };

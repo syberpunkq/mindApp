@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="well bs-component">
+        <form class="form-horizontal">
+          <fieldset>
+            <legend>Add user</legend>
+            <div class="form-group">
+              <label for="user_login" class="col-lg-2 control-label">User Login</label>
+              <div class="col-lg-10">
+                <input type="text" class="form-control" ng-model="user_login" id="user_login" placeholder="User Login">
+              </div>
+            </div>
+            <p class="text-info" ng-bind="error"></p>
+            <div class="form-group">
+              <label class="col-lg-2 control-label">User role</label>
+              <div class="col-lg-10">
+                <select ng-model="user_role" id="" class="form-control">
+                  <option selected value="account_manager">account manager</option>
+                  <option value="admin">admin</option>
+                  <option value="support">support</option>
+                  <option value="logistic">logistic</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-4 col-lg-offset-8">
+                <button type="reset" class="btn btn-default">Cancel</button>
+                <button type="submit" class="btn btn-primary" ng-click="submit(user_login, user_role)">Submit</button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
