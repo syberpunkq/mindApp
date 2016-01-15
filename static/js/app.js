@@ -1,4 +1,5 @@
 angular
+	// .module('mindApp', ['ui.bootstrap']);
 	.module('mindApp', []);
 
 angular
