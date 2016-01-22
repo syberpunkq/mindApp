@@ -36,9 +36,47 @@ function generateController($scope, $http, $location) {
 					$location.path('/login');
 				}	
 			});
-	$scope.generate = function(conferenceCount, confCount, webinarCount, userCount, domains, notAfter, notBefore, term, holder, eventType, speakerCountConferernce, attendeeCountConference, speakerCountWebinar, attendeeCountWebinar, documentEnabledConference, whiteboardEnabledConference, pollEnabledConference, desktopsharingEnabledConference, recordingEnabledConference, documentEnabledWebinar, whiteboardEnabledWebinar, pollEnabledWebinar, desktopsharingEnabledWebinar, recordingEnabledWebinar) {
-		var data = {account_id: "69620ee6e9552770af05386", license_name: "Test license", license_data:{conferenceCount: conferenceCount, confCount: confCount, webinarCount: webinarCount, userCount, domains, notAfter, notBefore, term, holder, eventType, speakerCountConferernce, attendeeCountConference, speakerCountWebinar, attendeeCountWebinar, documentEnabledConference, whiteboardEnabledConference, pollEnabledConference, desktopsharingEnabledConference, recordingEnabledConference, documentEnabledWebinar, whiteboardEnabledWebinar, pollEnabledWebinar, desktopsharingEnabledWebinar, recordingEnabledWebinar}}
-		$http.post('/generate', data)
+	$scope.generate = function(conferenceCount, confCount, webinarCount, userCount, domains, notAfter, notBefore, term, holder, eventType, speakerCountConferernce, attendeeCountConference, speakerCountWebinar, attendeeCountWebinar, documentEnabledConference, whiteboardEnabledConference, pollEnabledConference, desktopsharingEnabledConference, recordingEnabledConference, documentEnabledWebinar, whiteboardEnabledWebinar, pollEnabledWebinar, desktopsharingEnabledWebinar, recordingEnabledWebinar, agreement) {
+
+		if domains == "*" {domains: ["*"]};
+		// license_data ={conferenceCount: conferenceCount, confCount: confCount, webinarCount: webinarCount, userCount: userCount, domains: domains, notAfter: notAfter, notBefore: notBefore, term: term, holder: holder, eventType: eventType, speakerCountConferernce: speakerCountConferernce, attendeeCountConference: attendeeCountConference, speakerCountWebinar: speakerCountWebinar, attendeeCountWebinar: attendeeCountWebinar, documentEnabledConference: documentEnabledConference, whiteboardEnabledConference: whiteboardEnabledConference, pollEnabledConference: pollEnabledConference, desktopsharingEnabledConference: desktopsharingEnabledConference, recordingEnabledConference: recordingEnabledConference, documentEnabledWebinar: documentEnabledWebinar, whiteboardEnabledWebinar: whiteboardEnabledWebinar, pollEnabledWebinar: pollEnabledWebinar, desktopsharingEnabledWebinar: desktopsharingEnabledWebinar, recordingEnabledWebinar: recordingEnabledWebinar}
+		license_data ={
+
+			holder: holder, 
+
+			extra: {
+				conferenceCount: conferenceCount, 
+				userCount: userCount, 
+				domains: domains}, 
+
+			subject: "Imind 2.x", 
+			term: term, 
+			consumerAmount: 1, 
+			consumerType: "User", 
+			issuer: "CN=Mind Labs LLC",  
+			
+			confCount: confCount, // ?????????? conferenceCount?
+			webinarCount: webinarCount,  // ????????
+			notAfter: notAfter, 
+			notBefore: notBefore, 
+			eventType: eventType, 
+			speakerCountConferernce: speakerCountConferernce, 
+			attendeeCountConference: attendeeCountConference, 
+			speakerCountWebinar: speakerCountWebinar, 
+			attendeeCountWebinar: attendeeCountWebinar, 
+			documentEnabledConference: documentEnabledConference, 
+			whiteboardEnabledConference: whiteboardEnabledConference, 
+			pollEnabledConference: pollEnabledConference, 
+			desktopsharingEnabledConference: desktopsharingEnabledConference, 
+			recordingEnabledConference: recordingEnabledConference, 
+			documentEnabledWebinar: documentEnabledWebinar, 
+			whiteboardEnabledWebinar: whiteboardEnabledWebinar, 
+			pollEnabledWebinar: pollEnabledWebinar, 
+			desktopsharingEnabledWebinar: desktopsharingEnabledWebinar, 
+			recordingEnabledWebinar: recordingEnabledWebinar}
+		
+		var data = {account_id: "69620ee6e9552770af05386", license_name: "Test license", agreement: agreement, license_data: license_data}
+		$http.post('/generate1', data) // <============  CHANGE THIS !!!
 			.then (function(response){
 				if(response.data.code == 200) {
 					$location.path('/list');
