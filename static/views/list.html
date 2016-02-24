@@ -38,7 +38,10 @@
                                         </select> entries</label>
                                 </div>
                             </div>
-                            <div class="col-md-8" ng-show="returndata.data.admin">
+                            <div class="col-md-4">
+                               <label>Search: </label><input ng-model="query">
+                            </div>
+                            <div class="col-md-4" ng-show="returndata.data.admin">
                                 <div class="dataTables_filter"><a href="./#/add_account"><button class="btn pull-right">Add Account</button></a></div>
                             </div>
                         </div>
@@ -51,9 +54,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="account in returndata.data.all_accounts"> <!-- binding -->
+                                <tr ng-repeat="account in returndata.data.all_accounts | filter:query"> <!-- binding -->
                                     <td>{{ convertDate(account.datetime) }}</td>
-                                    <td>{{ account.title }}</td>
+                                    <td><a href="/#/account/{{ account._id.$oid }}">{{ account.title }}</a></td>
                                     <td><a href="#">license.zip</a></td>
                                 </tr>
                             </tbody>

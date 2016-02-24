@@ -8,25 +8,25 @@
             <div class="form-group">
               <label for="" class="col-lg-8 control-label">Количество доступных проводимых мероприятий</label>
               <div class="col-lg-4">
-                <input type="text" class="form-control" id="" placeholder="9999" ng-model="conferenceCount">
+                <input type="text" class="form-control" id="conferenceCount" placeholder="9999" ng-model="conferenceCount">
               </div>
             </div>
             <div class="form-group">
               <label for="" class="col-lg-8 control-label">Количество конкурентных пользователей</label>
               <div class="col-lg-4">
-                <input type="text" class="form-control" id="" placeholder="9999" ng-model="userCount">
+                <input type="text" class="form-control" id="userCount" placeholder="9999" ng-model="userCount">
               </div>
             </div>
             <div class="form-group">
               <label for="" class="col-lg-8 control-label">Имя домена или ip адрес, на котором может быть запущен сервис</label>
               <div class="col-lg-4">
-                <input type="text" class="form-control" id="" placeholder="domain.name" ng-model="domains">
+                <input type="text" class="form-control" id="domains" placeholder="domain.name" ng-model="domains">
               </div>
             </div>
             <div class="form-group">
               <label for="" class="col-lg-8 control-label">Кому выдается лицензия</label>
               <div class="col-lg-4">
-                <input type="text" class="form-control" id="" placeholder="ООО Вектор" ng-model="holder">
+                <input type="text" class="form-control" id="holder" placeholder="ООО Вектор" ng-model="holder">
               </div>
             </div>
             <div class="form-group">
@@ -34,49 +34,44 @@
               <div class="col-lg-4">
                 <div class="radio">
                   <label>
-                  <input type="radio" name="optionsRadios" id="optionsRadios1" checked="" value="trial">
+                  <input type="radio" name="optionsRadios" id="optionsRadios1" checked="" ng-model="period" value="trial" ng-click="dateCollapsed = true">
                     Триал на 14 дней
                   </label>
                 </div>
                 <div class="radio">
                   <label>
-                  <input type="radio" name="optionsRadios" id="optionsRadios2" value="unlim">
+                  <input type="radio" name="optionsRadios" id="optionsRadios2" ng-model="period" value="unlim" ng-click="dateCollapsed = true">
                     Безлимитная
                   </label>
                 </div>
                 <div class="radio">
                   <label>
-                  <input type="radio" name="optionsRadios" id="optionsRadios2" value="tillDate">
+                  <input type="radio" name="optionsRadios" id="optionsRadios2" ng-model="period" value="tillDate" ng-click="dateCollapsed = false">
                     Дата окончания
                   </label>
                 </div>
-                
-              <div class="form-group">
-                      <p class="input-group">
-                        <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
-                        <span class="input-group-btn">
-                          <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
-                        </span>
-                      </p>
               </div>
- <div class="row">
-        <div class="col-md-6">
-            <label>Format: <span class="muted-text">(manual alternate <em>{{altInputFormats[0]}}</em>)</span></label> <select class="form-control" ng-model="format" ng-options="f for f in formats"><option></option></select>
-        </div>
-    </div>
-    
             </div>
-                        </div>
+            <div class="form-group" uib-collapse="dateCollapsed">
+              <p class="input-group col-lg-4 col-lg-offset-8">
+                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </p>
+            </div>
+
             <div class="form-group">
               <label for="select" class="col-lg-8 control-label">Тип мероприятия</label>
               <div class="col-lg-4">
-                <select class="form-control" id="select">
-                  <option>Conference</option>
-                  <option>Webinar</option>
+                <select class="form-control" id="select" ng-model="type" ng-change="setType(type)">
+                  <option value="conference">Conference</option>
+                  <option value="webinar">Webinar</option>
                   <option>*</option>
                 </select>
               </div>
             </div>
+            <div uib-collapse="conferenceCollapsed">
             <div class="form-group">
               <div class="checkbox col-lg-4 col-lg-offset-8">
                 <label>
@@ -101,7 +96,7 @@
             <div class="form-group">
               <div class="checkbox col-lg-4 col-lg-offset-8">
                 <label>
-                <input type="checkbox" ng-model="screensharingEnabledConference"> Шаринг экрана в конференции
+                <input type="checkbox" ng-model="desktopsharingEnabledConference"> Шаринг экрана в конференции
                 </label>
               </div>
             </div>
@@ -112,6 +107,47 @@
                 </label>
               </div>
             </div>
+            </div>
+
+            <div uib-collapse="webinarCollapsed">
+            <div class="form-group">
+              <div class="checkbox col-lg-4 col-lg-offset-8">
+                <label>
+                <input type="checkbox" style="float: left;" ng-model="documentEnabledWebinar"> Документы в вебинаре 
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="checkbox col-lg-4 col-lg-offset-8">
+                <label>
+                <input type="checkbox" ng-model="whiteboardEnabledWebinar"> Доска в вебинаре
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="checkbox col-lg-4 col-lg-offset-8">
+                <label>
+                <input type="checkbox" ng-model="pollEnabledWebinar"> Опросы в вебинаре
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="checkbox col-lg-4 col-lg-offset-8">
+                <label>
+                <input type="checkbox" ng-model="desktopsharingEnabledWebinar"> Шаринг экрана в вебинаре
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="checkbox col-lg-4 col-lg-offset-8">
+                <label>
+                <input type="checkbox" ng-model="recordingEnabledWebinar"> Запись в вебинаре
+                </label>
+              </div>
+            </div>
+            </div>
+
+
             <div class="form-group">
               <label for="select" class="col-lg-8 control-label" ng-model="holder">Выписана</label>
               <div class="col-lg-4">
@@ -129,7 +165,7 @@
             </div>
             <div class="form-group">
               <div class="col-lg-4 col-lg-offset-8">
-                <button type="submit" class="btn btn-primary" ng-click="generate(conferenceCount, confCount, webinarCount, userCount, domains, notAfter, notBefore, term, holder, eventType, speakerCountConferernce, attendeeCountConference, speakerCountWebinar, attendeeCountWebinar, documentEnabledConference, whiteboardEnabledConference, pollEnabledConference, desktopsharingEnabledConference, recordingEnabledConference, documentEnabledWebinar, whiteboardEnabledWebinar, pollEnabledWebinar, desktopsharingEnabledWebinar, recordingEnabledWebinar)">Generate</button>
+                <button type="submit" class="btn btn-primary" ng-click="generate(conferenceCount, userCount, domains, holder, eventType, speakerCountConference, attendeeCountConference, speakerCountWebinar, attendeeCountWebinar, documentEnabledConference, whiteboardEnabledConference, pollEnabledConference, desktopsharingEnabledConference, recordingEnabledConference, documentEnabledWebinar, whiteboardEnabledWebinar, pollEnabledWebinar, desktopsharingEnabledWebinar, recordingEnabledWebinar, agreement)">Generate</button>
               </div>
 
           </fieldset>

@@ -31,8 +31,11 @@ function addAccountController($scope, $location, $http) {
 		}).success(function(d) {
 			console.log(d);
 			var fd = new FormData();
+			console.log(title);
+			console.log(d.files);
 			fd.append('title', title);
-			fd.append('files[]', d.files);
+			fd.append('files[]', JSON.stringify(d.files)); 
+			console.log(JSON.stringify(d.files));
 					$http({
 			transformRequest:angular.identity,
 			method: 'POST',

@@ -1,6 +1,6 @@
 angular
 	// .module('mindApp', ['ui.bootstrap']);
-	.module('mindApp', []);
+	.module('mindApp', ['ngRoute', 'ui.bootstrap']);
 
 angular
 	.module('mindApp')
@@ -25,6 +25,10 @@ angular
 		.when('/generate', {
 			templateUrl : 'static/views/generate.html',
 			controller : 'generateController'
+		})
+		.when('/account/:id', {
+			templateUrl : 'static/views/account.html',
+			controller : 'accountController'
 		})
 		.otherwise({redirectTo: '/'});
 	});
